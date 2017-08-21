@@ -5,8 +5,8 @@ defmodule Tubex.Video do
   @doc """
   fetch contents details
   """
-  def detail(video_id) do
-    opts = [key: Tubex.api_key, id: video_id, part: "contentDetails"]
+  def detail(video_id, options \\ []) do
+    opts = Keyword.merge([key: Tubex.api_key, id: video_id, part: "contentDetails"], options)
     case Tubex.API.get(Tubex.endpoint <> "/videos", opts) do
       {:ok, response} ->
         response
